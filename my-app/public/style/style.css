@@ -7,3 +7,18 @@ body {
     background-color: rgb(212, 177, 177);
     color: rgb(0, 0, 0);
 }
+
+.nav {
+    background-color: black;
+    color: bisque;
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+    justify-content: center;
+    gap: 15px;
+}
+.nav > a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+}

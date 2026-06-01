@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('content')
-<h1>hello</h1>
-<a href="/user">users</a>
+<div>
+  <h1>this is {{$data}} page</h1>
+</div>
 @endsection
