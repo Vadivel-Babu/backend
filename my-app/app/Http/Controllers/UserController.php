@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    private $data = [['id' => 1, 'name' => 'vel'], ['id' => 2, 'name' => 'mani']];
+
     public function index()
     {
         $data = 'home';
@@ -13,17 +15,21 @@ class UserController extends Controller
         return view('welcome', compact('data'));
     }
 
-    public function getUsers()
+    private function convertObject(array $arr)
     {
-        $data = [['id' => 1, 'name' => 'vel'], ['id' => 2, 'name' => 'mani']];
-
-        return view('users', compact('data'));
+        return json_decode(json_encode($arr));
     }
 
-    public function getUser($id)
+    public function getUsers()
     {
-        $data = [['id' => 1, 'name' => 'vel'], ['id' => 2, 'name' => 'mani']];
-        $user = collect($data)->firstWhere('id', $id);
+        $obj = $this->convertObject($this->data);
+
+        return view('users', compact('obj'));
+    }
+
+    public function getUser(string $id)
+    {
+        $user = collect($this->convertObject($this->data))->firstWhere('id', $id);
 
         return view('user', compact('user'));
     }
