@@ -11,9 +11,10 @@
   <link rel="preconnect" href="https://fonts.bunny.net">
   <link rel="stylesheet" href="{{url('style/style.css')}}">
   <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
+  @vite('resources/css/app.css')
 </head>
 
-<body>
+<body class="bg-gray-300">
   @include('layouts.includes.header')
   @yield('content')
 </body>
