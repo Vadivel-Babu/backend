@@ -1,9 +1,11 @@
 @extends('layouts.master')
 @section('content')
 <div>
-  <h1>this is users page</h1>
-  @foreach($obj as $user)
-  <a href="{{route('user',['id' => $user->id])}}">{{$user->name}}</a>
+  @foreach($employees as $employee)
+  <div class="border bg-white w-50 p-2 m-3">
+    <h1>{{$employee->name}}</h1>
+    <a href="{{route('user',['id' => $employee->id])}}">see</a>
+  </div>
   @endforeach
 </div>
 @endsection
