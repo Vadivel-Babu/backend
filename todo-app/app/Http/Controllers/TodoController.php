@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Todo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class TodoController extends Controller
 {
@@ -18,10 +19,24 @@ class TodoController extends Controller
     {
         $request->validate([
             'title' => 'required|max:255',
+            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif'
         ]);
-        Todo::create([
-            'content' => $request->title,
-        ]);
+
+        if ($request->hasFile('img')) {
+            $path = $request->file('img')->store('uploads', 'public');
+            // dd([
+            //     'path' => $path,
+            //     'full_url' => Storage::url($path),
+            // ]);
+            Todo::create([
+                'content' => $request->title,
+                'img' => $path
+            ]);
+        } else {
+            Todo::create([
+                'content' => $request->title,
+            ]);
+        }
 
         return redirect()
             ->route('todos.index')
@@ -39,10 +54,17 @@ class TodoController extends Controller
     {
         $request->validate([
             'title' => 'required|max:255',
+            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif'
         ]);
+        $path = null;
+        if ($request->hasFile('img')) {
+            $path = $request->file('img')->store('uploads', 'public');
+        }
 
         $todo = Todo::findorfail($id);
         $todo->content = $request->title;
+        $todo->isCompleted = $request->isCompleted ?? 0;
+        $todo->img = $path;
         $todo->save();
 
         return redirect()->route('todos.index');

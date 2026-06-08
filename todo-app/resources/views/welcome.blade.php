@@ -7,9 +7,15 @@
   @else
   <ul class="space-y-5">
     @foreach($todos as $todo)
-    <li class="flex justify-between bg-gray-100 p-2 rounded-xl">
+    <li class="flex flex-col justify-between bg-gray-100 gap-1 p-2 rounded-xl">
+      @if($todo->img != null)
+      <img src="{{ asset('storage/' . $todo->img) }}" alt="img" class="w-30 object-cover">
+      @endif
       <span>
         {{ $todo->content }}
+      </span>
+      <span>
+        status: {{ $todo->isCompleted == '1' ? 'completed' : 'not completed' }}
       </span>
       <div class="flex items-center gap-2">
         <button class="bg-yellow-500 text-xs p-1 rounded-md">
