@@ -1,6 +1,14 @@
 @extends('layouts.master')
 @section('content')
 <h1 class="font-bold text-4xl text-orange-300 text-center mt-3">Home</h1>
+<form action="{{route('filter')}}" method="get">
+  <select name="status" id="">
+    <option value="all">all</option>
+    <option value="completed">completed</option>
+    <option value="not completed">not completed</option>
+  </select>
+  <button type="submit">filter</button>
+</form>
 <div class="mt-6 mx-auto  rounded-2xl w-62 p-2">
   @if($todos->isEmpty())
   <p class="text-center">No todos yet. Create one!</p>

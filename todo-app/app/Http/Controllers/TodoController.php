@@ -50,6 +50,20 @@ class TodoController extends Controller
         return view('editform', compact('todo'));
     }
 
+    public function getTodoByStatus(Request $request)
+    {
+        $todos = [];
+        if ($request['status'] == 'completed') {
+            $todos = Todo::where('isCompleted', 1)->get();
+        } elseif ($request['status'] == 'not completed') {
+            $todos = Todo::where('isCompleted', 0)->get();
+        } else {
+            $todos = Todo::all();
+        }
+
+        return view('welcome', compact('todos'));
+    }
+
     public function update(Request $request, string $id)
     {
         $request->validate([

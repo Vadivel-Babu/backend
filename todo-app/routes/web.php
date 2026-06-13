@@ -8,6 +8,7 @@ Route::post('/', [TodoController::class, 'store'])->name('todos.store');
 Route::get('/create', function () {
     return view('form');
 });
+Route::get('/filter', [TodoController::class, 'getTodoByStatus'])->name('filter');
 Route::get('/edit/{id}', [TodoController::class, 'getTodo'])->name('edit');
 Route::put('/{id}', [TodoController::class, 'update'])->name('todos.update');
 Route::delete('/{id}', [TodoController::class, 'destroy'])->name('todo.delete');
