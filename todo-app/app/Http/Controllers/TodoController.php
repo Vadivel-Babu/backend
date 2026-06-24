@@ -24,10 +24,7 @@ class TodoController extends Controller
 
         if ($request->hasFile('img')) {
             $path = $request->file('img')->store('uploads', 'public');
-            // dd([
-            //     'path' => $path,
-            //     'full_url' => Storage::url($path),
-            // ]);
+
             Todo::create([
                 'content' => $request->title,
                 'img' => $path
