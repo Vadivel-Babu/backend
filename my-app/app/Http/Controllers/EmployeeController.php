@@ -19,9 +19,9 @@ class EmployeeController extends Controller
         return view('welcome', ['name' => 'home']);
     }
 
-    public function getEmployee(string $id)
+    public function getEmployee(string $slug)
     {
-        $employee = Employee::find($id);
+        $employee = Employee::where('slug', $slug)->first();
 
         return view('user', compact('employee'));
     }
