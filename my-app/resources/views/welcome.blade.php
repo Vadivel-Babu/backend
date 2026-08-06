@@ -1,3 +1,3 @@
 <x-layout>
-  <h1>This is the nameS</h1>
+  <h1>Welcome to {{$name}} page.</h1>
 </x-layout>
