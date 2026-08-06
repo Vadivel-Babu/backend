@@ -15,7 +15,7 @@
 </head>
 
 <body class="bg-gray-300">
-  @include('layouts.includes.header')
+  <x-nav-link></x-nav-link>
   {{$slot}}
 </body>
 
