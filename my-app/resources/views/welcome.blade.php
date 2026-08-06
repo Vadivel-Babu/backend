@@ -1,6 +1,3 @@
-@extends('layouts.master')
-@section('content')
-<div>
-  <h1>{{$name}}</h1>
-</div>
-@endsection
+<x-layout>
+  <h1>This is the nameS</h1>
+</x-layout>

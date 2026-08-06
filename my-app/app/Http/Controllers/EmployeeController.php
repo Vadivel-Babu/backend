@@ -21,7 +21,7 @@ class EmployeeController extends Controller
 
     public function create()
     {
-        return view('createuser', ['name' => 'create user']);
+        return view('createuser', ['name' => 'create user page']);
     }
 
     public function getEmployee(string $slug)

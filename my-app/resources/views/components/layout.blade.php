@@ -16,7 +16,7 @@
 
 <body class="bg-gray-300">
   @include('layouts.includes.header')
-  @yield('content')
+  {{$slot}}
 </body>
 
 </html>
