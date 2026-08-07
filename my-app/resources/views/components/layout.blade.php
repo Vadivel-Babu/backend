@@ -16,10 +16,10 @@
 
 <body class="bg-gray-300">
   <x-nav-link></x-nav-link>
-  {{$slot}}
-  <footer>
-    <h1>this is footer</h1>
-  </footer>
+  <div class="bg-black h-full">
+    {{$slot}}
+  </div>
+  <x-footer></x-footer>
 </body>
 
 </html>
