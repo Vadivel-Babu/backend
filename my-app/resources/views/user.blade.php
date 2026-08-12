@@ -1,6 +1,8 @@
 <x-layout>
+  <x-slot:heading>
+    User Page
+  </x-slot:heading>
   <div>
-    <h1>this is user page</h1>
     <div class="border bg-white p-2 m-1 max-w-max">
       <img src="{{$employee->img}}" class="w-10 object-cover" alt="">
       <h2>user name is: {{$employee->name}}</h2>

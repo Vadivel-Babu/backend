@@ -16,7 +16,8 @@
 
 <body class="bg-gray-300">
   <x-nav-link></x-nav-link>
-  <div class="bg-black h-full">
+  <h1 class="text-xl font-bold text-center my-2">{{$heading}}</h1>
+  <div>
     {{$slot}}
   </div>
   <x-footer></x-footer>
