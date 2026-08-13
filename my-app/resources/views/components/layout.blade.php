@@ -19,6 +19,7 @@
   <h1 class="text-xl font-bold text-center my-2">{{$heading}}</h1>
   <div>
     {{$slot}}
+
   </div>
   <x-footer></x-footer>
 </body>
