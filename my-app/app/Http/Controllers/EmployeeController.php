@@ -9,9 +9,7 @@ class EmployeeController extends Controller
 {
     public function index()
     {
-        $employees = Employee::all();
-
-        return view('users', compact('employees'));
+        return view('users', ['name' => 'all']);
     }
 
     public function home()
@@ -26,8 +24,6 @@ class EmployeeController extends Controller
 
     public function getEmployee(string $slug)
     {
-        $employee = Employee::where('slug', $slug)->first();
-
-        return view('user', compact('employee'));
+        return view('user', ['1' => 'one']);
     }
 }
