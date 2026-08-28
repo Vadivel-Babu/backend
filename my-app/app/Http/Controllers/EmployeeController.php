@@ -22,7 +22,7 @@ class EmployeeController extends Controller
         return view('createuser', ['name' => 'create user page']);
     }
 
-    public function getEmployee(string $slug)
+    public function getEmployee()
     {
         return view('user', ['1' => 'one']);
     }

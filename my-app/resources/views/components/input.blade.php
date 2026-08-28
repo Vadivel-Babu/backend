@@ -1,0 +1,1 @@
+<input {{$attributes->merge(['class'=>"border rounded-sm p-1"])}} />

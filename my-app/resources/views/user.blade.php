@@ -3,17 +3,9 @@
     User Page
   </x-slot:heading>
   <div>
-    <!-- <div class="border bg-white p-2 m-1 max-w-max">
-      <img src="{{$employee->img}}" class="w-10 object-cover" alt="">
-      <h2>user name is: {{$employee->name}}</h2>
-      <h2>user mail is: {{$employee->email}}</h2>
-      <p>
-        {{$employee->created_at->format('M d,Y')}}
-      </p>
-    </div> -->
-    <x-btn>
-      <a href="/users">back</a>
-    </x-btn>
-
+    <x-card>
+      <x-slot:name>hi</x-slot:name>
+      <x-slot:mail>local@mail.com</x-slot:mail>
+    </x-card>
   </div>
 </x-layout>
