@@ -11,8 +11,9 @@
         {{$employee->created_at->format('M d,Y')}}
       </p>
     </div> -->
-    <button>
+    <x-btn>
       <a href="/users">back</a>
-    </button>
+    </x-btn>
+
   </div>
 </x-layout>
