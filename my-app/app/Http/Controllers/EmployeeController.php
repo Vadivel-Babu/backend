@@ -9,7 +9,9 @@ class EmployeeController extends Controller
 {
     public function index()
     {
-        return view('users', ['name' => 'all']);
+        $data = Employee::all();
+
+        return view('users', compact('data'));
     }
 
     public function home()
