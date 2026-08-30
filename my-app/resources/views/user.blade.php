@@ -3,9 +3,9 @@
     User Page
   </x-slot:heading>
   <div>
-    <x-card>
-      <x-slot:name>hi</x-slot:name>
-      <x-slot:mail>local@mail.com</x-slot:mail>
-    </x-card>
+    name is: {{$employee->name}}
+    <x-btn>
+      <a href="/users">back</a>
+    </x-btn>
   </div>
 </x-layout>

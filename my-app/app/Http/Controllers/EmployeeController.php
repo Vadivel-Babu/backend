@@ -26,7 +26,7 @@ class EmployeeController extends Controller
 
     public function getEmployee(string $id)
     {
-        $employee = Employee::where('id', $id);
+        $employee = Employee::find($id);
 
         return view('user', compact('employee'));
     }
