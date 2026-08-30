@@ -8,10 +8,11 @@
     <x-card>
       <x-slot:name>{{$user['name']}}</x-slot:name>
       <x-slot:mail>{{$user['mail']}}</x-slot:mail>
+      <x-btn>
+        <a>see</a>
+      </x-btn>
     </x-card>
     @endforeach
-    <x-btn>
-      <a href="/user">see</a>
-    </x-btn>
+
   </div>
 </x-layout>

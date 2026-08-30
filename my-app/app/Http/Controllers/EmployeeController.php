@@ -24,8 +24,10 @@ class EmployeeController extends Controller
         return view('createuser', ['name' => 'create user page']);
     }
 
-    public function getEmployee()
+    public function getEmployee(string $id)
     {
-        return view('user', ['1' => 'one']);
+        $employee = Employee::where('id', $id);
+
+        return view('user', compact('employee'));
     }
 }
