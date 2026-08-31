@@ -2,10 +2,10 @@
   <x-slot:heading>
     User Page
   </x-slot:heading>
-  <div>
-    name is: {{$employee->name}}
-    <x-btn>
-      <a href="/users">back</a>
-    </x-btn>
-  </div>
+  <x-singlecard :name="$employee['name']" :mail="$employee['mail']" :occupation="$employee['occupation']" />
+
+  <x-btn>
+    <a href="/users">back</a>
+  </x-btn>
+
 </x-layout>

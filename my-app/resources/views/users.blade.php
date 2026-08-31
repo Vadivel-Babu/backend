@@ -1,6 +1,6 @@
 <x-layout>
   <x-slot:heading>
-    Users Page
+    All Users Page
   </x-slot:heading>
   <div class="max-w-150 mx-auto bg-white p-2">
     <h1 class="text-4xl">Employess page</h1>
