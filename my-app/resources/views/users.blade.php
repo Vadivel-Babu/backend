@@ -2,8 +2,8 @@
   <x-slot:heading>
     All Users Page
   </x-slot:heading>
-  <div class="max-w-150 mx-auto bg-white p-2">
-    <h1 class="text-4xl">Employess page</h1>
+  <div class="max-w-150 mx-auto p-2">
+
     @foreach($data as $user)
     <x-card :url="route('user', ['id' => $user->id])">
       <x-slot:name>{{$user['name']}}</x-slot:name>
