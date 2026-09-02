@@ -24,6 +24,21 @@ class EmployeeController extends Controller
         return view('createuser', ['name' => 'create user page']);
     }
 
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'mail' => 'required|email|unique:customer',
+            'occupation' => 'required|string',
+        ]);
+
+        // 2. Insert into database using Eloquent Model
+        Employee::create($validatedData);
+
+        // 3. Redirect back with a success message
+        return redirect()->route('allusers')->with('success', 'Form data submitted successfully!');
+    }
+
     public function getEmployee(string $id)
     {
         $employee = Employee::find($id);
