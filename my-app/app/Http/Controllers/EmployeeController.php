@@ -36,7 +36,7 @@ class EmployeeController extends Controller
         Employee::create($validatedData);
 
         // 3. Redirect back with a success message
-        return redirect()->route('allusers')->with('success', 'Form data submitted successfully!');
+        return redirect()->route('add')->with('success', 'Form data submitted successfully!');
     }
 
     public function getEmployee(string $id)

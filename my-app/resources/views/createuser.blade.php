@@ -2,6 +2,9 @@
   <x-slot:heading>
     Create user
   </x-slot:heading>
+  @if(session('success'))
+  <div style="color: green;">{{ session('success') }}</div>
+  @endif
   <form method="POST" action="{{ route('store') }}" class="border p-2 max-w-100 mx-auto flex flex-col gap-2">
     <x-input type="text" name="name" placeholder="enter your name" />
     <x-input type="email" name="mail" placeholder="enter your email" />
