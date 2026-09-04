@@ -17,9 +17,14 @@
 <body class="bg-gray-300">
   <x-nav-link></x-nav-link>
   <h1 class="text-xl font-bold text-center my-2">{{$heading}}</h1>
+
   <div>
     {{$slot}}
   </div>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+  lucide.createIcons();
+  </script>
 </body>
 
 </html>
