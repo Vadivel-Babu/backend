@@ -45,4 +45,12 @@ class EmployeeController extends Controller
 
         return view('user', compact('employee'));
     }
+
+    public function remove(string $id)
+    {
+        $data = Employee::findorfail($id);
+        $data->delete();
+
+        return redirect()->route('allusers');
+    }
 }

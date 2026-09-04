@@ -4,12 +4,16 @@
       src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCjPJY_nkgiu4OvIqlDNpPRq_k28LsWELoELE5g-9j1BSc7hrzv6zLecWm&s=10"
       class="size-15 rounded-full object-cover" alt="">
     <div>
-      <x-btn class="bg-red-500 p-1">
-        <a href=""> <i data-lucide="x" width="15" height="15"></i></a>
-      </x-btn>
-      <x-btn class="bg-yellow-500 p-1">
-        <a href="" class="text-black "> <i data-lucide="pen" fill="#111" width="15" height="15"></i></a>
-      </x-btn>
+      <form action="{{ route('remove', $id) }}" method="post">
+        @method('delete')
+        <x-btn type="submit" class="bg-red-500 p-1">
+          <i data-lucide="x" width="15" height="15"></i>
+        </x-btn>
+      </form>
+      <!-- <x-btn class="bg-yellow-500 p-1">
+        <a href="{{ route('remove', $id) }}" class="text-black "> <i data-lucide="pen" fill="#111" width="15"
+            height="15"></i></a>
+      </x-btn> -->
     </div>
   </div>
   <hr class="my-2">
