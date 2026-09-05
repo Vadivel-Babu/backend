@@ -31,10 +31,12 @@
         <i data-lucide="x" width="15" height="15"></i>
       </x-btn>
       <h1 class="text-center">Edit</h1>
-      <form action="" method="post" class="flex flex-col gap-1.5">
+      <form action="{{route('update',$id)}}" method="post" class="flex flex-col gap-1.5">
+        @method('put')
         <x-input type="text" value="{{$name}}" name="name" placeholder="enter your name" />
-        <x-input type="email" name="mail" placeholder="enter your email" />
+        <x-input type="email" name="mail" readonly value="{{$mail}}" placeholder="enter your email" />
         <select name="occupation" id="" class="border py-1">
+          <option value="">Select a category</option>
           <option value="frontend developer">frontend developer</option>
           <option value="backend developer">backend developer</option>
           <option value="ai developer">ai developer</option>

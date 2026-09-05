@@ -46,6 +46,23 @@ class EmployeeController extends Controller
         return view('user', compact('employee'));
     }
 
+    public function updateEmployee(string $id, Request $request)
+    {
+        $employee = Employee::find($id);
+
+        // $validatedData = $request->validate([
+        //     'name' => 'required|string|max:255',
+        //     'occupation' => 'required|string',
+        // ]);
+
+        $employee['name'] = $request['name'];
+        $employee['occupation'] = $request['occupation'];
+        $employee->save();
+        $this->getEmployee($id);
+
+        return redirect()->route('user', ['id' => $id]);
+    }
+
     public function remove(string $id)
     {
         $data = Employee::findorfail($id);
