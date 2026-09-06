@@ -14,7 +14,7 @@
         alias impedit fugiat minima, esse, nesciunt temporibus natus voluptate culpa. Mollitia consectetur commodi
         magnam?
       </p>
-      <x-btn x-on:click="open = ! open" class=" rounded-sm hover:bg-gray-200">see more</x-btn>
+      <x-btn x-on:click="open = ! open" color="text-white" class=" rounded-sm hover:bg-gray-200">see more</x-btn>
     </div>
 
   </div>

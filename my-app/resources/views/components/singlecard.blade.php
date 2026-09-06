@@ -6,12 +6,12 @@
     <div class="flex gap-1">
       <form action="{{ route('remove', $id) }}" method="post">
         @method('delete')
-        <x-btn type="submit" class="bg-red-500 p-4 text-black">
+        <x-btn type="submit" color="text-white" class="bg-red-500 p-4">
           <i data-lucide="x" width="12" height="12"></i>
         </x-btn>
       </form>
-      <x-btn x-on:click="open = true" class="bg-yellow-500">
-        <i data-lucide="pen" fill="#111" class="text-black" width="12" height="12"></i>
+      <x-btn x-on:click="open = true" color="text-black" class="bg-yellow-500">
+        <i data-lucide="pen" fill="#111" width="12" height="12"></i>
       </x-btn>
     </div>
   </div>
@@ -19,7 +19,7 @@
   <h2>name is: <span class="font-bold text-lg">{{$name}}</span> </h2>
   <h2>email is: <span class="font-bold text-lg">{{$mail}}</span> </h2>
   <h2>Occupation is: <span class="font-bold text-lg">{{$occupation}}</span> </h2>
-  <x-btn class="mt-2">
+  <x-btn color="text-white" class="mt-2">
     <a href="/users">back</a>
   </x-btn>
 
