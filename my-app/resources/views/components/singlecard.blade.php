@@ -27,7 +27,7 @@
   <div x-on:click="open=false" x-show="open"
     class="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-black/50">
     <div method="post" @click.stop class="bg-white rounded-md p-2 min-w-100">
-      <x-btn x-on:click="open=false" class="bg-black p-1">
+      <x-btn x-on:click="open=false" color="text-white" class="bg-black p-1">
         <i data-lucide="x" width="15" height="15"></i>
       </x-btn>
       <h1 class="text-center">Edit</h1>
@@ -42,8 +42,8 @@
           <option value="ai developer">ai developer</option>
         </select>
         <div class="flex gap-1 mt-5">
-          <x-btn x-on:click="open=false">close</x-btn>
-          <x-btn type="submit">Submit</x-btn>
+          <x-btn color="text-white" x-on:click="open=false">close</x-btn>
+          <x-btn color="text-white" type="submit">Submit</x-btn>
         </div>
       </form>
 
