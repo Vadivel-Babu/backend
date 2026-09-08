@@ -11,3 +11,5 @@ Route::delete('/remove/{id}', [EmployeeController::class, 'remove'])->name('remo
 Route::get('/users', [EmployeeController::class, 'index'])->name('allusers');
 Route::put('/update/{id}', [EmployeeController::class, 'updateEmployee'])->name('update');
 Route::get('/user/{id}', [EmployeeController::class, 'getEmployee'])->name('user');
+Route::get('/register', [UserController::class, 'signup'])->name('register');
+Route::get('/login', [UserController::class, 'signin'])->name('login');
