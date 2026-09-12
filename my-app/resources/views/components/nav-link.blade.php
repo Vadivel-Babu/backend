@@ -5,17 +5,23 @@ $path = request()->path();
   <a href="/">
     <h1 class="text-yellow-500 text-xl">Logo</h1>
   </a>
-  @if(false)
+
+  @auth
   <nav class="text-xl capitalize font-bold space-x-2">
     <a href="/" class="{{$path === '/' ? 'text-yellow-400' : ''}}">home</a>
     <a href="/users" class="{{$path === 'users'  ? 'text-yellow-400' : ''}}">user</a>
     <a href="/add" class="{{$path === 'add'  ? 'text-yellow-400' : ''}}">Create user</a>
+    <a href="/logout">
+      <x-btn>logout</x-btn>
+    </a>
   </nav>
-  @else
+  @endauth
+
+  @guest
   <nav class="text-xl capitalize font-bold space-x-2">
     <a href="/login" class="text-yellow-400">login</a>
-    <a href="/register" class="'text-yellow-400 ">signup</a>
+    <a href="/register" class="text-yellow-400 ">signup</a>
   </nav>
-  @endif
+  @endguest
 
 </div>
