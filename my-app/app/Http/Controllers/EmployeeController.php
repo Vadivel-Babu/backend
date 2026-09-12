@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EmployeeController extends Controller
 {
     public function index()
     {
-        $data = Employee::all();
+        $data = Employee::where('user_id', Auth::id())->get();
 
         return view('users', compact('data'));
     }
@@ -26,14 +27,17 @@ class EmployeeController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $userId = Auth::id();
+        $request->validate([
             'name' => 'required|string|max:255',
             'mail' => 'required|email|unique:customer',
             'occupation' => 'required|string',
         ]);
 
+        $data = ['name' => $request->name, 'mail' => $request->mail, 'occupation' => $request->occupation, 'user_id' => $userId];
+
         // 2. Insert into database using Eloquent Model
-        Employee::create($validatedData);
+        Employee::create($data);
 
         // 3. Redirect back with a success message
         return redirect()->route('add')->with('success', 'Form data submitted successfully!');

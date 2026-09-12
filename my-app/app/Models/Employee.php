@@ -8,5 +8,5 @@ use Illuminate\Support\Str;
 class Employee extends Model
 {
     protected $table = 'customer';
-    protected $fillable = ['name', 'mail', 'occupation'];
+    protected $fillable = ['name', 'mail', 'occupation', 'user_id'];
 }
