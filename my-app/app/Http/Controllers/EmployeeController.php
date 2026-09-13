@@ -28,15 +28,14 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
         $userId = Auth::id();
-        $request->validate([
+        $data = $request->validate([
             'name' => 'required|string|max:255',
             'mail' => 'required|email|unique:customer',
             'occupation' => 'required|string',
         ]);
 
-        $data = ['name' => $request->name, 'mail' => $request->mail, 'occupation' => $request->occupation, 'user_id' => $userId];
+        $data['user_id'] = $userId;
 
-        // 2. Insert into database using Eloquent Model
         Employee::create($data);
 
         // 3. Redirect back with a success message
