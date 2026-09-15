@@ -11,13 +11,15 @@ class EmployeeController extends Controller
     public function index(Request $request)
     {
         $data = Employee::where('user_id', Auth::id())->get();
-        $all = Employee::all();
-
-        if ($request->wantsJson()) {
-            return response()->json($all, 200);
-        }
 
         return view('users', compact('data'));
+    }
+
+    public function apiIndex()
+    {
+        $all = Employee::all();
+
+        return response()->json($all);
     }
 
     public function home()
