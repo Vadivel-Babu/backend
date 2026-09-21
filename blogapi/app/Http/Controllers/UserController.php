@@ -15,4 +15,13 @@ class UserController extends Controller
 
         return response()->json($data);
     }
+
+    public function login(Request $request)
+    {
+        $role = $request->role ? $request->role : 'user';
+        $pass = Hash::make($request->password);
+        $data = ['name' => $request->name, 'role' => $role, 'email' => $request->email, 'password' => $pass];
+
+        return response()->json($data);
+    }
 }
