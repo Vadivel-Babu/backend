@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
     public function index()
     {
-        return response()->json(['name' => 'post one']);
+        $post = Post::all();
+
+        return response()->json($post);
     }
 
     public function store(Request $request)

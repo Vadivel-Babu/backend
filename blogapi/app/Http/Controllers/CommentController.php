@@ -2,27 +2,40 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
     public function index()
     {
-        return response()->json(['name' => 'comments']);
+        $comments = Comment::all();
+
+        return response()->json($comments);
     }
 
     public function store(Request $request)
     {
-        return response()->json(['name' => 'comment created']);
+        $data = ['comment' => $request['comment']];
+        Comment::create($data);
+
+        return response()->json(['message' => 'comment created successfully']);
     }
 
-    public function update(Request $request)
+    public function update(string $id, Request $request)
     {
-        return response()->json(['name' => 'comment updated']);
+        $comment = Comment::find($id);
+        $comment['comment'] = $request['comment'];
+        $comment->save();
+
+        return response()->json(['message' => 'comment updated successfully']);
     }
 
-    public function destroy(Request $request)
+    public function destroy(string $id)
     {
-        return response()->json(['name' => 'comment deleted']);
+        $data = Comment::findOrFail($id);
+        $data->delete();
+
+        return response()->json(['message' => 'comment deleted successfully']);
     }
 }
