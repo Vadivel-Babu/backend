@@ -9,13 +9,19 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
 
-Route::get('/comment', [CommentController::class, 'index']);
-Route::post('/comment', [CommentController::class, 'store']);
-Route::put('/comment/{id}', [CommentController::class, 'update']);
-Route::delete('/comment/{id}', [CommentController::class, 'destroy']);
+// comment routes
+Route::controller(CommentController::class)->group(function () {
+    Route::get('/comment', 'index');
+    Route::post('/comment', 'store');
+    Route::put('/comment/{id}', 'update');
+    Route::delete('/comment/{id}', 'destroy');
+});
 
-Route::get('/post', [PostController::class, 'index']);
-Route::get('/post/{id}', [PostController::class, 'getPostById']);
-Route::post('/post', [PostController::class, 'store']);
-Route::put('/post/{id}', [PostController::class, 'update']);
-Route::delete('/post/{id}', [PostController::class, 'destroy']);
+// posts routes
+Route::controller(PostController::class)->group(function () {
+    Route::get('/post', 'index');
+    Route::get('/post/{id}', 'getPostById');
+    Route::post('/post', 'store');
+    Route::put('/post/{id}', 'update');
+    Route::delete('/post/{id}', 'destroy');
+});
