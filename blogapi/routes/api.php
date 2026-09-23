@@ -15,3 +15,7 @@ Route::put('/comment/{id}', [CommentController::class, 'update']);
 Route::delete('/comment/{id}', [CommentController::class, 'destroy']);
 
 Route::get('/post', [PostController::class, 'index']);
+Route::get('/post/{id}', [PostController::class, 'getPostById']);
+Route::post('/post', [PostController::class, 'store']);
+Route::put('/post/{id}', [PostController::class, 'update']);
+Route::delete('/post/{id}', [PostController::class, 'destroy']);

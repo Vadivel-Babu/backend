@@ -19,13 +19,23 @@ class PostController extends Controller
         return response()->json(['name' => 'post created']);
     }
 
+    public function getPostById(string $id)
+    {
+        $post = Post::find($id);
+
+        return response()->json($post);
+    }
+
     public function update(Request $request)
     {
         return response()->json(['name' => 'post updated']);
     }
 
-    public function destroy(Request $request)
+    public function destroy(string $id)
     {
-        return response()->json(['name' => 'post deleted']);
+        $post = Post::findOrFail($id);
+        $post->delete();
+
+        return response()->json(['message' => 'post deleted successfully']);
     }
 }
