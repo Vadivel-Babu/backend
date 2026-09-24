@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
+Route::post('/setting', [UserController::class, 'updateUserProfile']);
 
 // comment routes
 Route::controller(CommentController::class)->group(function () {

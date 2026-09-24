@@ -24,4 +24,9 @@ class UserController extends Controller
 
         return response()->json($data);
     }
+
+    public function updateUserProfile(Request $request)
+    {
+        return response()->json(['message' => 'profile updated']);
+    }
 }
