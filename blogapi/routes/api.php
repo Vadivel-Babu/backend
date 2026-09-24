@@ -25,3 +25,8 @@ Route::controller(PostController::class)->group(function () {
     Route::put('/post/{id}', 'update');
     Route::delete('/post/{id}', 'destroy');
 });
+
+// like routes
+Route::controller(PostController::class)->group(function () {
+    Route::post('/post', 'handleLike');
+});
