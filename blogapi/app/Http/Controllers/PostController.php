@@ -19,7 +19,7 @@ class PostController extends Controller
         return response()->json(['name' => 'post created']);
     }
 
-    public function getPostById(string $id)
+    public function show(string $id)
     {
         $post = Post::find($id);
 
@@ -28,7 +28,7 @@ class PostController extends Controller
 
     public function update(Request $request)
     {
-        return response()->json(['name' => 'post updated']);
+        return response()->json(['name' => 'post updated'], 201);
     }
 
     public function destroy(string $id)
@@ -36,6 +36,6 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
         $post->delete();
 
-        return response()->json(['message' => 'post deleted successfully']);
+        return response()->noContent();
     }
 }

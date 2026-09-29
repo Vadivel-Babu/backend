@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -19,15 +20,19 @@ Route::controller(CommentController::class)->group(function () {
 });
 
 // posts routes
-Route::controller(PostController::class)->group(function () {
-    Route::get('/post', 'index');
-    Route::get('/post/{id}', 'getPostById');
-    Route::post('/post', 'store');
-    Route::put('/post/{id}', 'update');
-    Route::delete('/post/{id}', 'destroy');
+// Route::controller(PostController::class)->group(function () {
+//     Route::get('/post', 'index');
+//     Route::get('/post/{id}', 'getPostById');
+//     Route::post('/post', 'store');
+//     Route::put('/post/{id}', 'update');
+//     Route::delete('/post/{id}', 'destroy');
+// });
+Route::prefix('v1')->group(function () {
+    Route::apiResource('posts', PostController::class);
+    Route::post('/like', [LikeController::class, 'handleLike']);
 });
 
 // like routes
-Route::controller(PostController::class)->group(function () {
-    Route::post('/post', 'handleLike');
-});
+// Route::controller(PostController::class)->group(function () {
+//     Route::post('/like', 'handleLike');
+// });
