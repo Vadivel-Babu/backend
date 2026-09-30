@@ -12,12 +12,12 @@ Route::post('/login', [UserController::class, 'login']);
 Route::post('/setting', [UserController::class, 'updateUserProfile']);
 
 // comment routes
-Route::controller(CommentController::class)->group(function () {
-    Route::get('/comment', 'index');
-    Route::post('/comment', 'store');
-    Route::put('/comment/{id}', 'update');
-    Route::delete('/comment/{id}', 'destroy');
-});
+// Route::controller(CommentController::class)->group(function () {
+//     Route::get('/comment', 'index');
+//     Route::post('/comment', 'store');
+//     Route::put('/comment/{id}', 'update');
+//     Route::delete('/comment/{id}', 'destroy');
+// });
 
 // posts routes
 // Route::controller(PostController::class)->group(function () {
@@ -28,7 +28,7 @@ Route::controller(CommentController::class)->group(function () {
 //     Route::delete('/post/{id}', 'destroy');
 // });
 Route::prefix('v1')->group(function () {
-    Route::apiResource('posts', PostController::class);
+    Route::apiResources(['posts' => PostController::class, 'comments' => CommentController::class]);
     Route::post('/like', [LikeController::class, 'handleLike']);
 });
 

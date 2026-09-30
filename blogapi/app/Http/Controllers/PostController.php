@@ -19,9 +19,9 @@ class PostController extends Controller
         return response()->json(['name' => 'post created']);
     }
 
-    public function show(string $id)
+    public function show(Post $post)
     {
-        $post = Post::find($id);
+        // $post = Post::find($id);
 
         return response()->json($post);
     }
