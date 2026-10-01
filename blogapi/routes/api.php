@@ -4,12 +4,11 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::post('/register', [UserController::class, 'register']);
-Route::post('/login', [UserController::class, 'login']);
-Route::post('/setting', [UserController::class, 'updateUserProfile']);
+// Route::post('/register', [UserController::class, 'register']);
+// Route::post('/login', [UserController::class, 'login']);
+// Route::post('/setting', [UserController::class, 'updateUserProfile']);
 
 // comment routes
 // Route::controller(CommentController::class)->group(function () {
@@ -28,6 +27,9 @@ Route::post('/setting', [UserController::class, 'updateUserProfile']);
 //     Route::delete('/post/{id}', 'destroy');
 // });
 Route::prefix('v1')->group(function () {
+    Route::post('/register', [UserController::class, 'register']);
+    Route::post('/login', [UserController::class, 'login']);
+    Route::post('/setting', [UserController::class, 'updateUserProfile']);
     Route::apiResources(['posts' => PostController::class, 'comments' => CommentController::class]);
     Route::post('/like', [LikeController::class, 'handleLike']);
 });
