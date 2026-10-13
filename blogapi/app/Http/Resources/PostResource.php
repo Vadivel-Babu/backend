@@ -22,7 +22,11 @@ class PostResource extends JsonResource
             'slug' => $this->slug,
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
-            'author_id' => new UserResource($this->whenLoaded('user'))
+            'author' => new UserResource($this->whenLoaded('user')),
+            'category' => new CategoryResource($this->whenLoaded('category')),
+            'comments' => CommentResource::collection($this->whenLoaded('comments')),
+            'likes_count' => $this->likes->count(),
+            'likes' => LikeResource::collection($this->whenLoaded('likes')),
         ];
     }
 }
