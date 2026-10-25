@@ -23,10 +23,12 @@ class PostResource extends JsonResource
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
             'author' => new UserResource($this->whenLoaded('user')),
-            'category' => new CategoryResource($this->whenLoaded('category')),
+            'category' => CategoryResource::collection($this->whenLoaded('category')),
             'comments' => CommentResource::collection($this->whenLoaded('comments')),
-            'likes_count' => $this->likes->count(),
             'likes' => LikeResource::collection($this->whenLoaded('likes')),
+            // fallback
+            'comments_count' => $this->comments_count ?? 0,
+            'likes_count' => $this->likes_count ?? 0,
         ];
     }
 }

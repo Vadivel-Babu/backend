@@ -10,7 +10,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        return PostResource::collection(Post::with('user')->get());
+        return PostResource::collection(Post::with('user')->withCount(['comments', 'likes'])->get());
     }
 
     public function store(Request $request)
