@@ -20,7 +20,9 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-        return PostResource::collection(Post::with(['user', 'comments', 'likes', 'category'])->findOrFail($post));
+        $post->load(['user', 'comments']);
+
+        return new PostResource($post);
     }
 
     public function update(Request $request)

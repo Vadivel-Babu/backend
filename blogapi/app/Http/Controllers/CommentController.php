@@ -16,10 +16,14 @@ class CommentController extends Controller
 
     public function store(Request $request)
     {
-        $data = ['comment' => $request['comment']];
-        Comment::create($data);
+        $validate = $request->validate(['comment' => 'required|min:5', 'post_id' => 'required', 'user_id' => 'required']);
+        $comment = Comment::create($validate);
 
-        return response()->json(['message' => 'comment created successfully']);
+        return response()->json([
+            'success' => true,
+            'message' => 'Comment created successfully!',
+            'data' => $comment
+        ], 201);
     }
 
     public function update(string $id, Request $request)
