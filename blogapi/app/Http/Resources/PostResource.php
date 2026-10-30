@@ -23,7 +23,7 @@ class PostResource extends JsonResource
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
             'author' => new UserResource($this->whenLoaded('user')),
-            'category' => CategoryResource::collection($this->whenLoaded('category')),
+            'category' => new CategoryResource($this->whenLoaded('category')),
             'comments' => CommentResource::collection($this->whenLoaded('comments')),
             'likes' => LikeResource::collection($this->whenLoaded('likes')),
             // fallback
