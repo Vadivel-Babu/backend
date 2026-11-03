@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\PostResource;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -19,9 +20,17 @@ class PostController extends Controller
             'title' => 'min:5|required|string',
             'content' => 'min:20|required',
             'author_id' => 'required',
-            'category_id' => 'required'
+            'category_id' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
-        $validate['slug'] = $request['title'];
+
+        // 2. Check if an image was uploaded
+        if ($request->hasFile('image')) {
+            // Stores file in storage/app/public/posts and returns the path
+            $path = $request->file('image')->store('posts', 'public');
+            $validate['image'] = $path;
+        }
+
         Post::create($validate);
 
         return response()->json(['message' => 'post created successfully', 'status' => true]);
@@ -43,6 +52,16 @@ class PostController extends Controller
             'category_id' => 'required'
         ]);
 
+        if ($request->hasFile('image')) {
+            // Delete the old image file from storage if it exists
+            if ($post->image && Storage::disk('public')->exists($post->image)) {
+                Storage::disk('public')->delete($post->image);
+            }
+
+            // Store the new image file
+            $validate['image'] = $request->file('image')->store('posts', 'public');
+        }
+
         $post->update($validate);
 
         return response()->json(['message' => 'post updated successfully', 'status' => true]);
@@ -50,6 +69,10 @@ class PostController extends Controller
 
     public function destroy(Post $post)
     {
+        if ($post->image && Storage::disk('public')->exists($post->image)) {
+            Storage::disk('public')->delete($post->getRawOriginal('image'));
+        }
+
         $post->delete();
 
         return response()->noContent();
