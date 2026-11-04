@@ -30,8 +30,11 @@ Route::prefix('v1')->group(function () {
     // user controller
     Route::post('/register', [UserController::class, 'register']);
     Route::post('/login', [UserController::class, 'login']);
-    Route::post('/setting', [UserController::class, 'updateUserProfile']);
 
-    Route::apiResources(['posts' => PostController::class, 'comments' => CommentController::class]);
-    Route::post('/like', [LikeController::class, 'handleLike']);
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::post('/setting', [UserController::class, 'updateUserProfile']);
+
+        Route::apiResources(['posts' => PostController::class, 'comments' => CommentController::class]);
+        Route::post('/like/{post}', [LikeController::class, 'toggle']);
+    });
 });

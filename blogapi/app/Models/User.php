@@ -10,15 +10,21 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 #[Fillable(['name', 'email', 'password'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasApiTokens;
 
     protected $fillable = ['name', 'email', 'password', 'image'];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
 
     /**
      * Get the attributes that should be cast.
@@ -36,5 +42,15 @@ class User extends Authenticatable
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class, 'author_id');
+    }
+
+    public function likedPosts()
+    {
+        return $this->belongsToMany(Post::class, 'likes');
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
     }
 }

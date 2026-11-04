@@ -26,10 +26,11 @@ class PostResource extends JsonResource
             'author' => new UserResource($this->whenLoaded('user')),
             'category' => new CategoryResource($this->whenLoaded('category')),
             'comments' => CommentResource::collection($this->whenLoaded('comments')),
-            'likes' => LikeResource::collection($this->whenLoaded('likes')),
+            // 'likes' => LikeResource::collection($this->whenLoaded('likes')),
             // fallback
             'comments_count' => $this->comments_count ?? 0,
             'likes_count' => $this->likes_count ?? 0,
+            'isLiked' => $this->isLikedByUser(),
         ];
     }
 }

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class Post extends Model
@@ -54,5 +55,16 @@ class Post extends Model
     public function likes(): HasMany
     {
         return $this->hasMany(Like::class, 'post_id');
+    }
+
+    public function isLikedByUser()
+    {
+        $userId = Auth::id();
+
+        if (! $userId) {
+            return false;
+        }
+
+        return $this->likes()->where('user_id', $userId)->exists();
     }
 }

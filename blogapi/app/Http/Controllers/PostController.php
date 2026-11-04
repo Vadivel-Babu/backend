@@ -9,9 +9,18 @@ use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return PostResource::collection(Post::with(['user', 'category'])->withCount(['comments', 'likes'])->get());
+        return PostResource::collection(Post::with(['user', 'category'])
+            ->withCount(['comments', 'likes'])
+            ->when($request->filled('search'), function ($query) use ($request) {
+                $query->where('title', 'like', '%'.$request->search.'%');
+            })
+            ->when($request->filled('category'), function ($query) use ($request) {
+                $query->where('category_id', $request->category);
+            })
+            ->latest()
+            ->paginate());
     }
 
     public function store(Request $request)
@@ -19,10 +28,11 @@ class PostController extends Controller
         $validate = $request->validate([
             'title' => 'min:5|required|string',
             'content' => 'min:20|required',
-            'author_id' => 'required',
             'category_id' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
+
+        $validate['author_id'] = $request->user()->id;
 
         // 2. Check if an image was uploaded
         if ($request->hasFile('image')) {
@@ -48,9 +58,10 @@ class PostController extends Controller
         $validate = $request->validate([
             'title' => 'min:5|required|string',
             'content' => 'min:20|required',
-            'author_id' => 'required',
             'category_id' => 'required'
         ]);
+
+        $validate['author_id'] = $request->user()->id;
 
         if ($request->hasFile('image')) {
             // Delete the old image file from storage if it exists
