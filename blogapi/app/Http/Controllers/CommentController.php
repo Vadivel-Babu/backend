@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -16,7 +17,8 @@ class CommentController extends Controller
 
     public function store(Request $request)
     {
-        $validate = $request->validate(['comment' => 'required|min:5|max:25', 'post_id' => 'required', 'user_id' => 'required']);
+        $validate = $request->validate(['comment' => 'required|min:5|max:25', 'post_id' => 'required']);
+        $validate['user_id'] = Auth::id();
         $comment = Comment::create($validate);
 
         return response()->json([
@@ -28,7 +30,8 @@ class CommentController extends Controller
     public function update(Comment $comment, Request $request)
     {
         // $comment = Comment::find($id);
-        $request->validate(['comment' => 'required|min:5', 'post_id' => 'required', 'user_id' => 'required']);
+        $request->validate(['comment' => 'required|min:5', 'post_id' => 'required']);
+        $validate['user_id'] = Auth::id();
         $comment['comment'] = $request['comment'];
         $comment->save();
 
