@@ -34,7 +34,7 @@ Route::prefix('v1')->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
         Route::post('/setting', [UserController::class, 'updateUserProfile']);
 
-        Route::apiResources(['posts' => PostController::class, 'comments' => CommentController::class]);
+        Route::apiResources(['posts' => PostController::class, 'posts.comments' => CommentController::class]);
         Route::post('/like/{post}', [LikeController::class, 'toggle']);
     });
 });
