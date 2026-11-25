@@ -6,26 +6,6 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-// Route::post('/register', [UserController::class, 'register']);
-// Route::post('/login', [UserController::class, 'login']);
-// Route::post('/setting', [UserController::class, 'updateUserProfile']);
-
-// comment routes
-// Route::controller(CommentController::class)->group(function () {
-//     Route::get('/comment', 'index');
-//     Route::post('/comment', 'store');
-//     Route::put('/comment/{id}', 'update');
-//     Route::delete('/comment/{id}', 'destroy');
-// });
-
-// posts routes
-// Route::controller(PostController::class)->group(function () {
-//     Route::get('/post', 'index');
-//     Route::get('/post/{id}', 'getPostById');
-//     Route::post('/post', 'store');
-//     Route::put('/post/{id}', 'update');
-//     Route::delete('/post/{id}', 'destroy');
-// });
 Route::prefix('v1')->group(function () {
     // user controller
     Route::post('/register', [UserController::class, 'register']);

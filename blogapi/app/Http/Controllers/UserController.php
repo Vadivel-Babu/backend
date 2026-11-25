@@ -23,7 +23,7 @@ class UserController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'status' => false,
-                'message' => 'Validation error',
+                'message' => 'fields cannot be empty',
                 'errors' => $validator->errors()
             ], 422);
         }
@@ -42,8 +42,6 @@ class UserController extends Controller
             'status' => true,
             'message' => 'User registered successfully',
             'user' => $user,
-            'access_token' => $token,
-            'token_type' => 'Bearer'
         ], 201);
     }
 
